@@ -8,17 +8,22 @@ import List from '../routes/List.jsx';
 import Login from '../routes/login.jsx';
 import Home from '../routes/Home.jsx';
 import Page from '../routes/Page.jsx';
+import ProfilePage from '../routes/ProfilePage.jsx';
+import Register from '../routes/Register.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Home /> },
+      { path: "/", element: <Login /> },
       { path: "/home", element: <Home /> },
       { path: "/list", element: <List/>},
       { path: "/login", element: <Login/>},
-      { path: "/:id", element: <Page/>}
+      { path: "/:id", element: <Page/>},
+      { path: "/profile", element: <ProfilePage/>},
+      { path: "/register", element: <Register/>},
+      { path: "/login", element: <Login/>}
     ],
   },
 ]);

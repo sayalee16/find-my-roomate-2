@@ -44,7 +44,8 @@ const Card = () => {
                   </ul>
                 </p>
                 <a href={`/${house.owner_id}`} class="btn btn-primary">View More</a>
-
+                
+                <a href={`/${house.owner_id}`} class="btn btn-primary" style={{marginLeft: "10px"}}><i class="fa-solid fa-marker"></i>Save </a>
                 
               </div>
             </div>

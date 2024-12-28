@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 var UserSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: [true, "must provide name"],
     trim: true,
@@ -10,19 +10,15 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "must provide email"],
     trim: true,
+  }  ,
+  contactno: {
+    type: Number,
+    maxlength:[10,"contact no cant be grater than 10 digits"]
   },
   password: {
     type:String,
     require:true,
     trim:true,
-  },
-  gender: {
-    type:String,
-    required: [true, "must provide gender"]
-  },
-  contactno: {
-    type: Number,
-    maxlength:[10,"contact no cant be grater than 10 digits"]
   }
   
 });
