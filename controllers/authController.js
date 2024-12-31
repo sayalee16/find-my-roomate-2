@@ -2,13 +2,13 @@ import bcrypt from "bcrypt";
 import User from "../models/user.js";
 import jwt from "jsonwebtoken"
 export const register = async (req,res) => {
-    const {username, email, contactno, password} = req.body;
+    const {username, email, contactno, password, isAdmin} = req.body;
     // hash password
     const hashPassword = await bcrypt.hash(password, 10);
     // console.log(hashPassword);
     //create new user n save to db
       try {
-        var user = await User.create({ username, email,contactno,password: hashPassword });
+        var user = await User.create({ username, email,contactno,password: hashPassword ,isAdmin});
 
         res.status(201).json({ user });
       } catch (error) {
@@ -37,7 +37,7 @@ export const login = async (req, res) => {
         
 
         // Generate JWT token
-        const token = jwt.sign({ username: user.name }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ username: user.name,isAdmin: user.isAdmin , userId: user._id   }, process.env.JWT_SECRET, { expiresIn: "1h" });
         
         // Send token to the client
         res.cookie("token", token, {

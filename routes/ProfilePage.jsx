@@ -1,5 +1,19 @@
+import { useNavigate } from "react-router";
+import axios from "axios";
 import Card from "../src/components/Card";
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const handleLogOut = async() => {
+    try{
+      const res = await axios.post("http://localhost:8800/api/auth/logout");
+      localStorage.removeItem("user")
+      navigate("/login");
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div
@@ -20,6 +34,9 @@ const ProfilePage = () => {
             <p>Email: John@gmail.com</p>
             <button class="btn btn-outline-dark" type="button">
               Update Profile
+            </button>
+            <button class="btn btn-dark" style={{marginLeft: "15px"}} type="button" onClick={handleLogOut}>
+              Log Out
             </button>
           </div>
           <h2 style={{marginTop: " 30px"}}>My List</h2>
