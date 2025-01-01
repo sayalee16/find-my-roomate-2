@@ -2,9 +2,6 @@
   "name": "find-my-roomate",
   "private": true,
   "version": "0.0.0",
-  "engines": {
-    "node": "16.x"
-  },
   "type": "module",
   "scripts": {
     "dev": "vite",
