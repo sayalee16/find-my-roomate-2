@@ -22,6 +22,12 @@ app.use("/api/houses", houseRoute);
 
 app.use("/api/test", testRoute);
 
+// CORS Configuration
+const corsOptions = {
+    origin: ["http://localhost:5173/", "https://find-my-roomate.vercel.app/"], // Replace with your frontend URLs
+    credentials: true, // Allow cookies to be sent
+};
+
 const port = 8800;
 
 var start = async () => {

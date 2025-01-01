@@ -18,6 +18,7 @@ const Login = () => {
       const res = await axios.post("http://localhost:8800/api/auth/login", {
           email,
           password,
+          withCredentials: true 
       });
       localStorage.setItem("user", JSON.stringify(res.data));
       navigate("/home");
