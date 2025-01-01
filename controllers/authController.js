@@ -45,8 +45,10 @@ export const login = async (req, res) => {
             expires: new Date(Date.now() + 3600000)
         });
 
+        console.log("user is");
+        console.log(user);
         // Send the JSON response
-        return res.status(200).json({ msg: "Login successful", token });
+        return res.status(200).json({ msg: "Login successful", token ,user: user});
 
     } catch (error) {
         res.status(500).json({ msg: "Error during login", error: error.message });

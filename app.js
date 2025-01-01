@@ -9,35 +9,34 @@ import cors from 'cors';
 import cookieParser from "cookie-parser";
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+
 dotenv.config();
-app.use(cookieParser()); 
 
-app.use("/api/post", postRoute);
-
-app.use("/api/auth", authRoute);
-
-app.use("/api/houses", houseRoute);
-
-app.use("/api/test", testRoute);
-
-// CORS Configuration
 const corsOptions = {
-    origin: ["http://localhost:5173/", "https://find-my-roomate.vercel.app/"], // Replace with your frontend URLs
+    origin: ["http://localhost:5173", "https://find-my-roomate.vercel.app"], // Ensure no trailing slash on URLs
     credentials: true, // Allow cookies to be sent
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow common HTTP methods
 };
 
-const port = 8800;
+app.use(cors(corsOptions));
 
-var start = async () => {
-    try{
+app.use(express.json());
+app.use(cookieParser());
+
+app.use("/api/post", postRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/houses", houseRoute);
+app.use("/api/test", testRoute);
+
+const port = 8800;
+const start = async () => {
+    try {
         await connectDB(process.env.MONGO_URI);
-        app.listen(port,()=>{
-            console.log("server is listens to port 8800.....");
+        app.listen(port, () => {
+            console.log("Server is listening on port 8800...");
         });
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
-}
+};
 start();

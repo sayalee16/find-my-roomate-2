@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router";
 import axios from "axios";
 import Card from "../src/components/Card";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../src/context/authContext";
+
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const {currUser, updateUser} = useContext(AuthContext);
+  if(!currUser){
+    navigate("/login");
+  }
   const handleLogOut = async() => {
     try{
       const res = await axios.post("http://localhost:8800/api/auth/logout");
-      localStorage.removeItem("user")
+      localStorage.removeItem("user");
+      updateUser(null);
       navigate("/login");
     }
     catch(error){
@@ -26,12 +34,12 @@ const ProfilePage = () => {
       >
         <div class="col-md-5">
           <div
-            class="h-60 p-2 rounded-3"
+            class="h-80 p-2 rounded-3"
             style={{ backgroundColor: "#7371fc" }}
           >
             <h2>User Information</h2>
-            <p>Username: John Doe</p>
-            <p>Email: John@gmail.com</p>
+            <p>Username: {currUser.username}</p>
+            <p>Email: {currUser.email}</p>
             <button class="btn btn-outline-dark" type="button">
               Update Profile
             </button>

@@ -10,6 +10,7 @@ import Home from '../routes/Home.jsx';
 import Page from '../routes/Page.jsx';
 import ProfilePage from '../routes/ProfilePage.jsx';
 import Register from '../routes/Register.jsx';
+import { AuthContextProvider } from './context/authContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthContextProvider>
     <RouterProvider router={router}></RouterProvider>
+    </AuthContextProvider>
   </StrictMode>,
 )

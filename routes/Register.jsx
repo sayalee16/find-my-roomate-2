@@ -78,12 +78,12 @@ const Register = () => {
           <button
             type="submit"
             className="btn btn-primary"
-            style={{ marginTop: "16px", width: "100%", height: "50px" }}
+            style={{ marginTop: "16px", width: "100%", height: "50px" ,backgroundColor:"#7371fc" }}
           >
             Sign Up
           </button>
           {error && <span>{error}</span>}
-          <Link to="/login" className="loginLink">
+          <Link to="/login" className="loginLink" style={{color:"#7371fc"}}>
             Already have an account? Log in
           </Link>
         </form>

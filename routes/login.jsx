@@ -1,11 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { AuthContext } from "../src/context/authContext";
+
 const Login = () => {
     
     const [error,setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+
+    const {updateUser} = useContext(AuthContext);
 
     const handleOnSubmit = async(e) => {
     e.preventDefault(); 
@@ -15,19 +19,21 @@ const Login = () => {
     const password = e.target.password.value;
 
     try {
-      const res = await axios.post("http://localhost:8800/api/auth/login", {
-          email,
-          password,
-          withCredentials: true 
-      });
-      localStorage.setItem("user", JSON.stringify(res.data));
+      const res = await axios.post(
+          "http://localhost:8800/api/auth/login",
+          { email, password },
+          { withCredentials: true }  // Correctly added here in the config object
+      );
+      const user = {
+        ...res.data.user,  // Spread the user object
+        token: res.data.token,  // Add the token
+    };
+      // console.log("Response data:", res.data);
+      updateUser(user);
       navigate("/home");
-  } catch (err) {
-      if (err.response) {
-          setError(err.response.data.message || "An error occurred");
-      } else {
-          setError("Network error, please try again.");
-      }
+  } catch (error) {
+      console.error("Error during login:", error);
+      setError(error.response ? error.response.data.msg : "Login failed");
   } finally {
       setIsLoading(false);
   }
@@ -65,12 +71,12 @@ const Login = () => {
             type="submit"
             disabled = {isLoading}
             className="btn btn-primary"
-            style={{ marginTop: "16px", width: "100%", height: "50px" }}
+            style={{ marginTop: "16px", width: "100%", height: "50px", backgroundColor:"#7371fc" }}
           >
               {isLoading ? "Loading..." : "Login"}
           </button>
           {error && <span>{error}</span>}
-          <Link to="/register" className="loginLink">
+          <Link to="/register" className="loginLink" style={{color:"#7371fc"}}>
             Don't have an account? Sign Up
           </Link>
         </form>
