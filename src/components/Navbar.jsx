@@ -1,18 +1,20 @@
+import { Link } from "react-router";
+
 const Navbar = () => {
     return (
         <>
         <nav>
         
-            <a href="/" className="home">
+            <Link to="/" className="home">
             <i className="fa-solid fa-house home"></i>
             <span>Find My Roomate</span>
-            </a>
-            <a href="/home" className="Home">Home</a>
-            <a href="/home" className="About">About</a>
-            <a href="/list" className="Contacts">List</a>
-            <a href="/profile" className="Agents">Profile</a>
-            <a href="/login" className="Signin">Sign in</a>
-            <a href="/register" className="Signup">Sign up</a>
+            </Link>
+            <Link to="/home" className="Home">Home</Link>
+            <Link to="/home" className="About">About</Link>
+            <Link to="/list" className="List">List</Link>
+            <Link to="/profile" className="Profile">Profile</Link>
+            <Link to="/login" className="Signin">Sign in</Link>
+            <Link to="/register" className="Signup">Sign up</Link>
        
         </nav>
         
