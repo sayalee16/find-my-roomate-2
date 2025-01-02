@@ -4,6 +4,7 @@ import Card from "../src/components/Card";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../src/context/authContext";
 
+
 const ProfilePage = () => {
   const navigate = useNavigate();
   const {currUser, updateUser} = useContext(AuthContext);
@@ -20,6 +21,10 @@ const ProfilePage = () => {
     catch(error){
       console.log(error);
     }
+  }
+
+  const handleUpdate = () => {
+    navigate("/profile/update-info");
   }
 
   return (
@@ -40,7 +45,7 @@ const ProfilePage = () => {
             <h2>User Information</h2>
             <p>Username: {currUser.username}</p>
             <p>Email: {currUser.email}</p>
-            <button class="btn btn-outline-dark" type="button">
+            <button class="btn btn-outline-dark" type="button" onClick={handleUpdate}>
               Update Profile
             </button>
             <button class="btn btn-dark" style={{marginLeft: "15px"}} type="button" onClick={handleLogOut}>

@@ -11,6 +11,7 @@ import Page from '../routes/Page.jsx';
 import ProfilePage from '../routes/ProfilePage.jsx';
 import Register from '../routes/Register.jsx';
 import { AuthContextProvider } from './context/authContext.jsx';
+import UpdatePage from '../routes/UpdatePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
       { path: "/:id", element: <Page/>},
       { path: "/profile", element: <ProfilePage/>},
       { path: "/register", element: <Register/>},
-      { path: "/login", element: <Login/>}
+      { path: "/login", element: <Login/>},
+      { path: "/profile/update-info", element: <UpdatePage/>}
     ],
   },
 ]);

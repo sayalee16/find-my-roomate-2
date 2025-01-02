@@ -24,6 +24,14 @@ const Login = () => {
           { email, password },
           { withCredentials: true }  // Correctly added here in the config object
       );
+      const token = res.data.token;
+      if (token) {
+        localStorage.setItem("token", token); // Save the token to local storage
+        console.log("Token saved:", token);
+      }
+      else {
+        console.error("No token received");
+      }
       const user = {
         ...res.data.user,  // Spread the user object
         token: res.data.token,  // Add the token
@@ -71,7 +79,7 @@ const Login = () => {
             type="submit"
             disabled = {isLoading}
             className="btn btn-primary"
-            style={{ marginTop: "16px", width: "100%", height: "50px", backgroundColor:"#7371fc" }}
+            style={{ marginTop: "16px", width: "100%", height: "50px", backgroundColor:"#7371fc", borderColor:"#7371fc" }}
           >
               {isLoading ? "Loading..." : "Login"}
           </button>
