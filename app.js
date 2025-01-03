@@ -17,6 +17,7 @@ const corsOptions = {
     origin: ["http://localhost:5173", "https://find-my-roomate.vercel.app"], // Ensure no trailing slash on URLs
     credentials: true, // Allow cookies to be sent
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow common HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));

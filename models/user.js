@@ -23,7 +23,11 @@ var UserSchema = new mongoose.Schema({
   isAdmin: {
     type:Boolean,
     default:false
-  }
-  
+  },
+  savedPosts:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "House", // Reference to the existing House model
+    }],  
 });
 export default mongoose.model("User", UserSchema);

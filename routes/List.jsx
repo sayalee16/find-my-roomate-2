@@ -11,7 +11,6 @@ const List = () => {
             </div>
             <div className="spacing-div" style={{flex: 0.3}}></div>
             <div className="map" style={{flex: 1}}>
-                
                 <Map/>
             </div>
             
