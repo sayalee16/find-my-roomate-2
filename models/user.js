@@ -26,8 +26,14 @@ var UserSchema = new mongoose.Schema({
   },
   savedPosts:[
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "House", // Reference to the existing House model
+    postId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "House" },
+    image: { type: String, required: true },
+    headline: { type: String, required: true },
+    address: { type: String, required: true },
+    rent: { type: Number, required: true },
+    available_rooms: { type: Number, required: true },
+    searching_for: { type: String, required: true },
+    owner_id: { type: Number, required: true },
     }],  
 });
 export default mongoose.model("User", UserSchema);

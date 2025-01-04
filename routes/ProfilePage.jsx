@@ -103,7 +103,7 @@ const ProfilePage = () => {
             {savedPosts.map((house) => (
               <div key={house.owner_id}>
                 <div class="card">
-                  <img src="image1.jpg" class="card-img-top" alt="images" />
+                  <img src={house.image} class="card-img-top" alt="images" />
                   <div class="card-body">
                     <h5 class="card-title">{house.headline}</h5>
                     <p class="card-text">

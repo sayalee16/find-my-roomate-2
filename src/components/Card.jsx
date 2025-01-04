@@ -22,7 +22,7 @@ const Card = () => {
     fetchHouses();
   }, []);
 
-  const handleOnSave = async (houseId) => {
+  const handleOnSave = async (houseID, image,headline,address,rent,available_rooms,searching_for,owner_id) => {
     const token = localStorage.getItem("token");
     console.log("Token from localStorage:", token);
 
@@ -30,7 +30,14 @@ const Card = () => {
       const res = await axios.put(
         `http://localhost:8800/api/post/${_id}`, // URL with user ID
         {
-          postId: houseId, // Send the houseId to be saved
+          postId: houseID,
+          image: image,
+          headline: headline,
+          address: address,
+          rent: rent,
+          available_rooms: available_rooms,
+          searching_for: searching_for,
+          owner_id: owner_id
         },
         {
           headers: { Authorization: `Bearer ${token}` }, // Add token to headers
@@ -38,8 +45,9 @@ const Card = () => {
         }
       );
       localStorage.setItem("user", JSON.stringify(currUser)); 
+      localStorage.setItem("token",JSON.stringify(token));
       updateUser(currUser); // Update user context with the updated user details
-      console.log(currUser);
+      console.log(res.data);
     } catch (error) {
       console.error(
         "Error updating user:",
@@ -96,7 +104,7 @@ const Card = () => {
                 href={`/${house.owner_id}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleOnSave(house._id);
+                  handleOnSave(house._id,house.image,house.headline,house.address,house.rent,house.available_rooms,house.searching_for,house.owner_id);
                 }}
                 class="btn btn-primary"
                 style={{ marginLeft: "10px" }}

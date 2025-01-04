@@ -1,19 +1,27 @@
 import User from "../models/user.js";
+import mongoose from "mongoose";
 export const addPost = async(req,res) => {
     const _id = req.params.id;    
+    const {postId,image,headline,address,rent,available_rooms,searching_for,owner_id } = req.body;
     try {
         const user = await User.findById(_id);
         if (!user) {
             return res.status(404).json({ msg: "User not found" });
-        }
-        const { postId } = req.body;
-        if (user.savedPosts.includes(postId)) {
-            return res.status(400).json({ msg: "Post already saved" });
-        }
-
-        user.savedPosts.push(postId);
+        }     
+        const postIdObject = new mongoose.Types.ObjectId(postId);
+        if (!user.savedPosts.includes(postId)) {
+            user.savedPosts.push({
+              postId:postIdObject,
+              image,
+              headline,
+              address,
+              rent,
+              available_rooms,
+              searching_for,
+              owner_id
+            });
+          }
         await user.save();
-    
         res.status(200).json({ msg: "Post saved successfully", savedPosts: user.savedPosts });   
         
     } catch (error) {
