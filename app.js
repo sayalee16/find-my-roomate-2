@@ -14,9 +14,9 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-    origin: ["http://localhost:5173", "https://find-my-roomate.vercel.app"], // Ensure no trailing slash on URLs
-    credentials: true, // Allow cookies to be sent
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow common HTTP methods
+    origin: ["http://localhost:5173", "https://find-my-roomate.vercel.app"],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 

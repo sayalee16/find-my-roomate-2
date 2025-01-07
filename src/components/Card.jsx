@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,7 +8,7 @@ import { house } from "../../controllers/houseController";
 const Card = () => {
   const { currUser, updateUser } = useContext(AuthContext);
   const _id = currUser._id;
-  const [error,setError] = useState("");
+  const [error, setError] = useState("");
   const [houses, setHouses] = useState([]);
   useEffect(() => {
     const fetchHouses = async () => {
@@ -22,7 +23,16 @@ const Card = () => {
     fetchHouses();
   }, []);
 
-  const handleOnSave = async (houseID, image,headline,address,rent,available_rooms,searching_for,owner_id) => {
+  const handleOnSave = async (
+    houseID,
+    image,
+    headline,
+    address,
+    rent,
+    available_rooms,
+    searching_for,
+    owner_id
+  ) => {
     const token = localStorage.getItem("token");
     console.log("Token from localStorage:", token);
 
@@ -37,15 +47,15 @@ const Card = () => {
           rent: rent,
           available_rooms: available_rooms,
           searching_for: searching_for,
-          owner_id: owner_id
+          owner_id: owner_id,
         },
         {
           headers: { Authorization: `Bearer ${token}` }, // Add token to headers
           withCredentials: true, // Include cookies
         }
       );
-      localStorage.setItem("user", JSON.stringify(currUser)); 
-      localStorage.setItem("token",JSON.stringify(token));
+      localStorage.setItem("user", JSON.stringify(currUser));
+      localStorage.setItem("token", JSON.stringify(token));
       updateUser(currUser); // Update user context with the updated user details
       console.log(res.data);
     } catch (error) {
@@ -96,15 +106,27 @@ const Card = () => {
                   </li>
                 </ul>
               </p>
-              <a href={`/${house.owner_id}`} class="btn btn-primary">
+              <Link
+                to={`/view-more?postId=${house._id}`}
+                className="btn btn-primary"
+              >
                 View More
-              </a>
+              </Link>
 
               <a
                 href={`/${house.owner_id}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleOnSave(house._id,house.image,house.headline,house.address,house.rent,house.available_rooms,house.searching_for,house.owner_id);
+                  handleOnSave(
+                    house._id,
+                    house.image,
+                    house.headline,
+                    house.address,
+                    house.rent,
+                    house.available_rooms,
+                    house.searching_for,
+                    house.owner_id
+                  );
                 }}
                 class="btn btn-primary"
                 style={{ marginLeft: "10px" }}

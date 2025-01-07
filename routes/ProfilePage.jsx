@@ -6,7 +6,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [savedPosts, setSavedPosts] = useState([]);
   const { currUser, updateUser } = useContext(AuthContext);
-  console.log("curr user from profile page",currUser._id);
+  console.log("curr user from profile page", currUser._id);
   if (!currUser) {
     return <Redirect to="/login" />;
   }
@@ -45,24 +45,31 @@ const ProfilePage = () => {
     fetchSavedPosts();
   }, [currUser._id]);
 
-  const handleOnDelete = async(houseId) => {
+  const handleOnDelete = async (houseId) => {
     const token = localStorage.getItem("token");
-      try {
-        const res = await axios.delete(
-          `http://localhost:8800/api/post/${currUser._id}`,
-         { data: { postId: houseId },
+    // console.log("token from handle delete",token);
+    // console.log("houseid: ",houseId);
+    // console.log("curr user id: ", currUser._id);
+    // all correct above
+    
+    const url = `http://localhost:8800/api/post/${currUser._id}/${houseId}`; 
+    try {
+      const res = await axios.delete(url,
+        {
           headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true, // Include cookies
+          withCredentials: true,
         }
-        );
-        console.log("Post deleted successfully:", res.data);
-        setSavedPosts(res.data.savedPosts);
-        updateUser(currUser);
-        console.log(res.data.savedPosts);
-      } catch (error) {
-        console.error("Error fetching saved posts:", error);
-      }
-  }
+      );
+      console.log("Post deleted successfully:", res.data);
+      updateUser(currUser);
+      localStorage.setItem("user", JSON.stringify(currUser));
+      localStorage.setItem("token", token);
+      setSavedPosts(res.data.savedPosts);
+      // console.log(res.data.savedPosts);
+    } catch (error) {
+      console.error("Error fetching saved posts:", error);
+    }
+  };
 
   return (
     <>
@@ -154,8 +161,8 @@ const ProfilePage = () => {
                       class="btn btn-primary"
                       style={{ marginLeft: "10px" }}
                     >
-                      <i class="fa-solid fa-marker"></i>Delete</a>
-                    
+                      <i class="fa-solid fa-marker"></i>Delete
+                    </a>
                   </div>
                 </div>
                 <div className="spacer" style={{ height: "35px" }}></div>
