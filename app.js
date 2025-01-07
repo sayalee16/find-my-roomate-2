@@ -21,10 +21,13 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors()); 
 
+// middlewares
 app.use(express.json());
 app.use(cookieParser());
 
+// routes
 app.use("/api/post", postRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/houses", houseRoute);
