@@ -19,5 +19,9 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "static": {
+    "src": "src",
+    "dest": "/src"
+  }
 }
