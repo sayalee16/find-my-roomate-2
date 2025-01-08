@@ -52,9 +52,9 @@ nav {
 @media only screen and (max-width: 890px) {
   nav .Home,
   nav .About,
-  nav .Contacts,
-  nav .Agents {
-    display: none;
+  nav .List,
+  nav .Profile {
+    display: none ;
   }
 }
 
@@ -198,12 +198,12 @@ form input{
 
 /* list page css starts */
 
-.list{
+/* .list{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   
-}
+} */
 
 @media only screen and (max-width: 1200px) {
   
@@ -217,10 +217,7 @@ form input{
 } 
 
 @media only screen and (max-width: 850px) {
-  .map{
-    display: none;
-  }
-  .spacing-div{
+  .map-filter{
     display: none;
   }
   .filter{
@@ -228,14 +225,30 @@ form input{
     margin-left: 10%;
     margin-right: 10%;
   }
+  .item .min{
+    width: 100px;
+  }
+  
 } 
 
 .filter{
   margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 50px;
 }
 
-.map{
-  margin-top: 50px;
+.card-filter{
+  width: 100%;
+  flex: 2;
+}
+.map-filter{
+ flex: 1.5;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+
 }
 
 .filter-form{
@@ -412,3 +425,5 @@ dd{
 .loginLink:hover {
   text-decoration: underline;
 }
+
+

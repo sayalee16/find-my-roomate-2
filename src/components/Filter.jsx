@@ -1,13 +1,14 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card.jsx";
 import axios from "axios";
 import House from "../../models/house.js";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext.jsx";
+import Map from "./Map.jsx";
 const Filter = () => {
   const [filters, setFilters] = useState({
     city: "",
-    gender: "any",  // Default to "any"
+    gender: "any", // Default to "any"
     minPrice: "",
     maxPrice: "",
   });
@@ -21,7 +22,7 @@ const Filter = () => {
       try {
         const res = await axios.get("http://localhost:8800/api/houses/data");
         console.log(res.data);
-        setHouses(res.data); 
+        setHouses(res.data);
         setFilteredHouses(res.data); // Initially, display all houses
       } catch (error) {
         console.error("Error fetching houses:", error);
@@ -42,31 +43,32 @@ const Filter = () => {
   const handleSearch = () => {
     console.log("Filters applied:", filters);
     console.log("Available houses:", houses);
-  
+
     // Convert filter values to lowercase for case-insensitive comparison
     const cityFilter = filters.city ? filters.city.toLowerCase().trim() : "";
-  
+
     // Filter houses based on search criteria
     const result = houses.filter((house) => {
       const isCityMatch = house.city.toLowerCase().includes(cityFilter);
       const isGenderMatch =
-        filters.gender === "any" || house.gender_preference.toLowerCase() === filters.gender.toLowerCase();
+        filters.gender === "any" ||
+        house.gender_preference.toLowerCase() === filters.gender.toLowerCase();
       const isPriceMatch =
         (!filters.minPrice || house.rent >= parseInt(filters.minPrice)) &&
         (!filters.maxPrice || house.rent <= parseInt(filters.maxPrice));
-  
+
       return isCityMatch && isGenderMatch && isPriceMatch;
     });
-  
+
     console.log("Filtered houses:", result);
-  
+
     setFilteredHouses(result);
   };
-  
 
   return (
     <>
-      <div className="filter">
+      
+        <div className="card-filter">
         <div className="filter-form">
           <div className="top">
             <div className="item">
@@ -95,6 +97,7 @@ const Filter = () => {
                 type="number"
                 id="minPrice"
                 name="minPrice"
+                className="min"
                 placeholder="Any"
                 onChange={handleChange}
               />
@@ -103,6 +106,7 @@ const Filter = () => {
               <label htmlFor="maxPrice">Max Price</label>
               <input
                 type="number"
+                className="min"
                 id="maxPrice"
                 name="maxPrice"
                 placeholder="Any"
@@ -110,18 +114,27 @@ const Filter = () => {
               />
             </div>
             <button onClick={handleSearch}>
-          <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
           </div>
         </div>
         <div className="Card" style={{ flex: "0.5" }}>
-        {filteredHouses.length > 0 ? (
-            filteredHouses.map((house) => <Card key={house.id} house={house} />)
+          {filteredHouses.length > 0 ? (
+            filteredHouses.map((house) => (
+              <div key={house.id}>
+                <Card house={house} />
+              </div>
+            ))
           ) : (
             <p>No houses found based on your search criteria.</p>
           )}
         </div>
-      </div>
+        </div>
+        <div className="spacing-div" style={{flex:0.2}}></div>
+        <div className="map-filter">
+          <Map houses={filteredHouses} />
+        </div>
+        
     </>
   );
 };

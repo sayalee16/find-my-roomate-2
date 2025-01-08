@@ -3,20 +3,20 @@ import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Map = () => {
-  const [houses, setHouses] = useState([]);
-  useEffect(() => {
-    const fetchHouses = async () => {
-      try {
-        const res = await axios.get("http://localhost:8800/api/houses/data");
-        console.log(res.data);
-        setHouses(res.data); // Update state with the fetched houses
-      } catch (error) {
-        console.error("Error fetching houses:", error);
-      }
-    };
-    fetchHouses();
-  }, []);
+const Map = ({houses}) => {
+  // const [houses, setHouses] = useState([]);
+  // useEffect(() => {
+  //   const fetchHouses = async () => {
+  //     try {
+  //       const res = await axios.get("http://localhost:8800/api/houses/data");
+  //       console.log(res.data);
+  //       setHouses(res.data); // Update state with the fetched houses
+  //     } catch (error) {
+  //       console.error("Error fetching houses:", error);
+  //     }
+  //   };
+  //   fetchHouses();
+  // }, []);
 
   return (
     <div style={{ height: "500px", width: "100%" }}>
