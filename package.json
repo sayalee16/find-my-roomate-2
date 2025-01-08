@@ -1,6 +1,7 @@
 {
   "name": "find-my-roomate",
   "private": true,
+  "homepage": ".",
   "proxy":"localhost:8800",
   "version": "0.0.0",
   "type": "module",

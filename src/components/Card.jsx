@@ -5,23 +5,23 @@ import { AuthContext } from "../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { house } from "../../controllers/houseController";
 
-const Card = () => {
-  const { currUser, updateUser } = useContext(AuthContext);
-  const _id = currUser._id;
-  const [error, setError] = useState("");
-  const [houses, setHouses] = useState([]);
-  useEffect(() => {
-    const fetchHouses = async () => {
-      try {
-        const res = await axios.get("http://localhost:8800/api/houses/data");
-        console.log(res.data);
-        setHouses(res.data); // Update state with the fetched houses
-      } catch (error) {
-        console.error("Error fetching houses:", error);
-      }
-    };
-    fetchHouses();
-  }, []);
+const Card = ({house}) => {
+  // const { currUser, updateUser } = useContext(AuthContext);
+  // const _id = currUser._id;
+  // const [error, setError] = useState("");
+  // const [houses, setHouses] = useState([]);
+  // useEffect(() => {
+  //   const fetchHouses = async () => {
+  //     try {
+  //       const res = await axios.get("http://localhost:8800/api/houses/data");
+  //       console.log(res.data);
+  //       setHouses(res.data); // Update state with the fetched houses
+  //     } catch (error) {
+  //       console.error("Error fetching houses:", error);
+  //     }
+  //   };
+  //   fetchHouses();
+  // }, []);
 
   const handleOnSave = async (
     houseID,
@@ -68,7 +68,6 @@ const Card = () => {
   };
   return (
     <>
-      {houses.map((house) => (
         <div key={house.owner_id}>
           <div class="card">
             <img src={house.image} class="card-img-top" alt="images" />
@@ -137,7 +136,6 @@ const Card = () => {
           </div>
           <div className="spacer" style={{ height: "35px" }}></div>
         </div>
-      ))}
     </>
   );
 };

@@ -29,9 +29,15 @@ console.log(house.headline);
     <>
       <div className="page">
         <div className="left">
-          <img src="image1.jpg" alt="" style={{borderRadius: "10px"}} />
+          <img src={house.image} alt="" style={{borderRadius: "10px"}} />
           <h2 style={{marginTop:"20px", marginBottom: "20px"}}>{house.headline}</h2>
           <div className="border">
+          <div className="info border" style={{ marginBottom: "20px" }} >
+            <li>The rooms are spacious, well-ventilated, and maintained to provide a comfortable and clean living environment. Each room is cleaned regularly, ensuring a fresh and inviting atmosphere for relaxation.</li>
+              <li> The furniture is thoughtfully arranged to maximize space, and the cleanliness extends to all common areas like the kitchen and bathrooms, which are sanitized frequently.</li>
+            <li>We prioritize hygiene, ensuring that both private and shared spaces are always neat and organized. Whether you're working, studying, or unwinding, the clean and tidy surroundings create an enjoyable and peaceful living experience.</li>
+           
+          </div>
           <dl>
             <dt><b>Roomate Info: </b></dt>
             <dd>{house.roommate_description}</dd>
@@ -51,16 +57,11 @@ console.log(house.headline);
           
         </div>
         <div className="right">
-          <div className="info border" style={{ marginBottom: "20px" }} >
-            <li>The rooms are spacious, well-ventilated, and maintained to provide a comfortable and clean living environment. Each room is cleaned regularly, ensuring a fresh and inviting atmosphere for relaxation.</li>
-              <li> The furniture is thoughtfully arranged to maximize space, and the cleanliness extends to all common areas like the kitchen and bathrooms, which are sanitized frequently.</li>
-            <li>We prioritize hygiene, ensuring that both private and shared spaces are always neat and organized. Whether you're working, studying, or unwinding, the clean and tidy surroundings create an enjoyable and peaceful living experience.</li>
-           
-          </div>
+          
           <div style={{ height: "500px", width: "100%" }} className="map-info">
             <MapContainer
               center={[18.5204, 74.1]} // Center on Maharashtra
-              zoom={11} // Adjust zoom level for Maharashtra
+              zoom={10} // Adjust zoom level for Maharashtra
               scrollWheelZoom={false}
               style={{ height: "100%", width: "100%" }}
             >
