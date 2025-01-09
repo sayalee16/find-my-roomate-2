@@ -15,7 +15,7 @@ const Filter = () => {
   const [filteredHouses, setFilteredHouses] = useState([]);
   const { currUser, updateUser } = useContext(AuthContext);
   const _id = currUser._id;
-  // console.log("curr user form filter",currUser);
+  
   const [houses, setHouses] = useState([]);
   useEffect(() => {
     const fetchHouses = async () => {
@@ -61,7 +61,6 @@ const Filter = () => {
     });
 
     console.log("Filtered houses:", result);
-
     setFilteredHouses(result);
   };
 
@@ -88,7 +87,7 @@ const Filter = () => {
               <select name="gender" id="gender" onChange={handleChange}>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-                <option value="female">Any</option>
+                <option value="any">Any</option>
               </select>
             </div>
             <div className="item">

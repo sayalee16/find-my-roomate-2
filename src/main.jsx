@@ -12,6 +12,7 @@ import ProfilePage from '../routes/ProfilePage.jsx';
 import Register from '../routes/Register.jsx';
 import { AuthContextProvider } from './context/authContext.jsx';
 import UpdatePage from '../routes/UpdatePage.jsx';
+import SearchResults from '../routes/SearchResults.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
       { path: "/profile", element: <ProfilePage/>},
       { path: "/register", element: <Register/>},
       { path: "/login", element: <Login/>},
-      { path: "/profile/update-info", element: <UpdatePage/>}
+      { path: "/profile/update-info", element: <UpdatePage/>},
+      { path: "/search-results", element: <SearchResults/>}
     ],
   },
 ]);
