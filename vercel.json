@@ -3,11 +3,14 @@
     "builds": [
       {
         "src": "vite.config.js",
-        "use": "@vercel/node"
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
       },
       {
-        "src": "src/**/*",
-        "use": "@vercel/static"
+        "src": "api/**/*.js",
+        "use": "@vercel/node"
       }
     ],
     "routes": [
@@ -17,15 +20,12 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/index.html"
+        "dest": "/dist/$1"
       }
     ],
     "env": {
       "NODE_ENV": "production",
       "PORT": "8800"
-    },
-    "static": {
-      "directory": "public"
     }
   }
   
