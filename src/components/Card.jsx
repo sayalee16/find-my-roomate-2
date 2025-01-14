@@ -6,9 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { house } from "../../controllers/houseController";
 
 const Card = ({house}) => {
-  // const { currUser, updateUser } = useContext(AuthContext);
-  // const _id = currUser._id;
-  // const [error, setError] = useState("");
+  const { currUser, updateUser } = useContext(AuthContext);
+  const _id = currUser._id;
+  const [error, setError] = useState("");
   // const [houses, setHouses] = useState([]);
   // useEffect(() => {
   //   const fetchHouses = async () => {
@@ -38,7 +38,7 @@ const Card = ({house}) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:8800/api/post/${_id}`, // URL with user ID
+        `http://localhost:8800/api/post/${currUser._id}`, // URL with user ID
         {
           postId: houseID,
           image: image,
@@ -63,7 +63,6 @@ const Card = ({house}) => {
         "Error updating user:",
         error.response?.data?.msg || error.message
       );
-      setError(error.response?.data?.msg || "Failed to update user");
     }
   };
   return (
