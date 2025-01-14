@@ -48,9 +48,9 @@ export const getPost = async(req,res) => {
 export const deletePost = async (req, res) => {
     
     const _id = req.params.userId; // Get the user ID from the URL parameters
-   const postId = req.params.postId;
-//    console.log("User ID:", _id);
-//    console.log("Post ID:", postId);
+   const {postId} = req.body;
+   console.log("User ID:", _id);
+   console.log("Post ID:", postId);
     try {
       // Validate if postId is a valid ObjectId
       if (!mongoose.Types.ObjectId.isValid(postId)) {

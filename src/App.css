@@ -426,4 +426,7 @@ dd{
   text-decoration: underline;
 }
 
-
+.profile{
+  display: flex;
+  align-items: flex-start;
+}

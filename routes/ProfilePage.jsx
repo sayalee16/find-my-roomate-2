@@ -14,6 +14,7 @@ const ProfilePage = () => {
     try {
       const res = await axios.post("http://localhost:8800/api/auth/logout");
       localStorage.removeItem("user");
+      localStorage.removeItem("token");
       updateUser(null);
       navigate("/login");
     } catch (error) {
@@ -52,9 +53,11 @@ const ProfilePage = () => {
     // console.log("curr user id: ", currUser._id);
     // all correct above
     
-    const url = `http://localhost:8800/api/post/${currUser._id}/${houseId}`; 
     try {
-      const res = await axios.delete(url,
+      const res = await axios.post(`http://localhost:8800/api/post/${currUser._id}`,
+        {
+          postId: houseId
+        },
         {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
@@ -81,32 +84,9 @@ const ProfilePage = () => {
           justifyContent: "space-around",
         }}
       >
-        <div class="col-md-5">
-          <div
-            class="h-80 p-2 rounded-3"
-            style={{ backgroundColor: "#7371fc" }}
-          >
-            <h2>User Information</h2>
-            <p>Username: {currUser.username}</p>
-            <p>Email: {currUser.email}</p>
-            <button
-              class="btn btn-outline-dark"
-              type="button"
-              onClick={handleUpdate}
-            >
-              Update Profile
-            </button>
-            <button
-              class="btn btn-dark"
-              style={{ marginLeft: "15px" }}
-              type="button"
-              onClick={handleLogOut}
-            >
-              Log Out
-            </button>
-          </div>
-          <h2 style={{ marginTop: " 30px" }}>My List</h2>
-          <div className="list" style={{ marginTop: "20px" }}>
+        <div class="col-md-5" className="profile">
+        <div className="list" style={{ flex: 1.2}}>
+            <h2>My List</h2>
             {savedPosts.map((house) => (
               <div key={house.owner_id}>
                 <div class="card">
@@ -169,22 +149,36 @@ const ProfilePage = () => {
               </div>
             ))}
           </div>
-        </div>
+         
 
-        <div class="col-md-5">
-          <div class="p-3 bg-body-tertiary border rounded-3">
-            <h2>Chat box</h2>
-            <p>
-              Or, keep it light and add a border for some added definition to
-              the boundaries of your content. Be sure to look under the hood at
-              the source HTML here as we've adjusted the alignment and sizing of
-              both column's content for equal-height.
-            </p>
-            <button class="btn btn-outline-secondary" type="button">
-              Example button
+          <div className="spacing-div" style={{flex: 0.3}}></div>
+
+          <div
+            class="h-80 p-3 rounded-3"
+            style={{ backgroundColor: "#7371fc", flex: 1 }}
+          >
+            <h2>User Information</h2>
+            <p>Username: {currUser.username}</p>
+            <p>Email: {currUser.email}</p>
+            <button
+              class="btn btn-outline-dark"
+              type="button"
+              onClick={handleUpdate}
+            >
+              Update Profile
+            </button>
+            <button
+              class="btn btn-dark"
+              style={{ marginLeft: "15px" }}
+              type="button"
+              onClick={handleLogOut}
+            >
+              Log Out
             </button>
           </div>
         </div>
+
+        
       </div>
     </>
   );
