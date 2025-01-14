@@ -23,6 +23,9 @@
     "env": {
       "NODE_ENV": "production",
       "PORT": "8800"
+    },
+    "static": {
+      "directory": "public"
     }
   }
   
