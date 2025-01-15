@@ -43,7 +43,6 @@ app.use("/api/houses", houseRoute);
 app.use("/api/test", testRoute);
 app.use("/api/user", userRoute);
 
-
 const port = 8800;
 const start = async () => {
   try {
