@@ -15,7 +15,7 @@ const Register = () => {
     const contactno = formData.get("contactno");
 
     try{
-        const res = await axios.post("http://localhost:8800/api/auth/register",{
+        const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/register`,{
             username,email,password,contactno
         })
         navigate("/login");

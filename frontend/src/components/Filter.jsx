@@ -19,7 +19,7 @@ const Filter = () => {
   useEffect(() => {
     const fetchHouses = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/houses/data");
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/houses/data`);
         // console.log(res.data);
         setHouses(res.data);
         setFilteredHouses(res.data); // Initially, display all houses

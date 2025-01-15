@@ -24,7 +24,7 @@ const SearchResults = () => {
     // Fetch data based on query params
     const fetchHouses = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/houses/data");
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/houses/data`);
         setOghouses(res.data);
         const filtered = res.data.filter((house) => {
           return (

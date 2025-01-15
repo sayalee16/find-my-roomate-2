@@ -13,7 +13,7 @@ const Page = () => {
   useEffect(() => {
     const fetchHouses = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/post/view-more/${postId}`);
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post/view-more/${postId}`);
         // console.log(res.data);
         setHouse(res.data.house); // Update state with the fetched houses
       } catch (error) {

@@ -12,7 +12,7 @@ const ProfilePage = () => {
   }
   const handleLogOut = async () => {
     try {
-      const res = await axios.post("http://localhost:8800/api/auth/logout");
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/logout`);
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       updateUser(null);
@@ -31,7 +31,7 @@ const ProfilePage = () => {
       const token = localStorage.getItem("token");
       try {
         const res = await axios.get(
-          `http://localhost:8800/api/post/${currUser._id}`,
+          `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post/${currUser._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
@@ -54,7 +54,7 @@ const ProfilePage = () => {
     // all correct above
     
     try {
-      const res = await axios.post(`http://localhost:8800/api/post/${currUser._id}`,
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post/${currUser._id}`,
         {
           postId: houseId
         },

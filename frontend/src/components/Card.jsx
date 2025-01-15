@@ -37,7 +37,7 @@ const Card = ({house}) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:8800/api/post/${currUser._id}`, // URL with user ID
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post/${currUser._id}`, // URL with user ID
         {
           postId: houseID,
           image: image,

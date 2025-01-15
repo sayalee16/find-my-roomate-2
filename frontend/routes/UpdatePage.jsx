@@ -21,7 +21,7 @@ const UpdatePage = () => {
   
     try {
       const res = await axios.put(
-        `http://localhost:8800/api/user/${_id}`,
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/user/${_id}`,
         { username, email, contactno, password },
         {
             headers: { Authorization: `Bearer ${token}` }, // Add token to headers

@@ -9,8 +9,8 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    const {updateUser} = useContext(AuthContext);
-
+    const {currUser, updateUser} = useContext(AuthContext);
+  
     const handleOnSubmit = async(e) => {
     e.preventDefault(); 
     setIsLoading(true);
@@ -18,9 +18,10 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+  
     try {
       const res = await axios.post(
-          "http://localhost:8800/api/auth/login",
+          `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/login`,
           { email, password },
           { withCredentials: true }  // Correctly added here in the config object
       );
