@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:5173","https://find-my-roomate.vercel.app"],
+  origin: ["http://localhost:5173","https://find-my-roomate-frontend.vercel.app"],
   credentials: true,       
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
