@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import Card from "./Card.jsx";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import House from "../../models/house.js";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext.jsx";
 const SearchBar = () => {

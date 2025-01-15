@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import Card from "./Card.jsx";
 import axios from "axios";
-import House from "../../models/house.js";
 import { useContext } from "react";
-import { AuthContext } from "../context/authContext.jsx";
+import { AuthContext} from "../context/authContext.jsx";
 import Map from "./Map.jsx";
 const Filter = () => {
   const [filters, setFilters] = useState({

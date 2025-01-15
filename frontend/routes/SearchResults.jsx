@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../src/components/Card";
 import Map from "../src/components/Map";
-import house from "../models/house";
 const SearchResults = () => {
     const [filters, setFilters] = useState({
         city: "",

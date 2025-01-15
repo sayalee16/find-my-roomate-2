@@ -1,10 +1,8 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useLocation } from "react-router-dom";
-import house from "../models/house";
 const Page = () => {
   const [house, setHouse] = useState({});
   const location = useLocation();

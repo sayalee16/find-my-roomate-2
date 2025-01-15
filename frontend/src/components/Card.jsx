@@ -1,9 +1,8 @@
 import axios from "axios";
 import { Link } from "react-router";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { house } from "../../controllers/houseController";
 
 const Card = ({house}) => {
   const { currUser, updateUser } = useContext(AuthContext);
