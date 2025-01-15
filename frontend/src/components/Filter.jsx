@@ -20,7 +20,7 @@ const Filter = () => {
     const fetchHouses = async () => {
       try {
         const res = await axios.get("http://localhost:8800/api/houses/data");
-        console.log(res.data);
+        // console.log(res.data);
         setHouses(res.data);
         setFilteredHouses(res.data); // Initially, display all houses
       } catch (error) {
@@ -30,7 +30,7 @@ const Filter = () => {
     fetchHouses();
   }, []);
 
-  console.log(filteredHouses);
+  // console.log(filteredHouses);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({
@@ -40,8 +40,8 @@ const Filter = () => {
   };
 
   const handleSearch = () => {
-    console.log("Filters applied:", filters);
-    console.log("Available houses:", houses);
+    // console.log("Filters applied:", filters);
+    // console.log("Available houses:", houses);
 
     // Convert filter values to lowercase for case-insensitive comparison
     const cityFilter = filters.city ? filters.city.toLowerCase().trim() : "";
@@ -59,7 +59,7 @@ const Filter = () => {
       return isCityMatch && isGenderMatch && isPriceMatch;
     });
 
-    console.log("Filtered houses:", result);
+    ("Filtered houses:", result);
     setFilteredHouses(result);
   };
 

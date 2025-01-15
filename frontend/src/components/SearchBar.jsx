@@ -18,7 +18,7 @@ const SearchBar = () => {
     const fetchHouses = async () => {
       try {
         const res = await axios.get("http://localhost:8800/api/houses/data");
-        console.log(res.data);
+        // console.log(res.data);
         setHouses(res.data);
         setFilteredHouses(res.data); // Initially, display all houses
       } catch (error) {
@@ -29,7 +29,7 @@ const SearchBar = () => {
   }, []);
   const { currUser, updateUser } = useContext(AuthContext);
   const _id = currUser._id;
-  console.log("user from home", currUser);
+  // console.log("user from home", currUser);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +37,7 @@ const SearchBar = () => {
       ...prev,
       [name]: value,
     }));
-    console.log(filters);
+    // console.log(filters);
   };
 
   const queryParams = new URLSearchParams(filters).toString();

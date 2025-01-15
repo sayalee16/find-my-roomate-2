@@ -8,13 +8,13 @@ const Page = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const postId = queryParams.get("postId"); 
-  console.log("post id from view more",postId);
+  // console.log("post id from view more",postId);
   
   useEffect(() => {
     const fetchHouses = async () => {
       try {
         const res = await axios.get(`http://localhost:8800/api/post/view-more/${postId}`);
-        console.log(res.data);
+        // console.log(res.data);
         setHouse(res.data.house); // Update state with the fetched houses
       } catch (error) {
         console.error("Error fetching houses:", error);
@@ -22,7 +22,7 @@ const Page = () => {
     };
     fetchHouses();
   }, [postId]);
-console.log(house.headline);
+// console.log(house.headline);
   return (
     <>
       <div className="page">

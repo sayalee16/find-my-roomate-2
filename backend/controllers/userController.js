@@ -20,7 +20,7 @@ export const updateUser = async (req, res) => {
     const tokenUserId = req.userId; // ID extracted from the token middleware
     const { password, ...inputs } = req.body; // Separate password from other inputs
     
-    console.log("Received token:", req.headers.authorization);
+    // console.log("Received token:", req.headers.authorization);
     // Check if the user is authorized
     if (_id !== tokenUserId) {
         return res.status(403).json({ msg: "Not authorized to update this user" });

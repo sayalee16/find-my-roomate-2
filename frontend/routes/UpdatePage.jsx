@@ -17,7 +17,7 @@ const UpdatePage = () => {
     const contactno = formData.get("contactno");
 
     const token = localStorage.getItem("token");
-    console.log("Token from localStorage:", token);
+    // console.log("Token from localStorage:", token);
   
     try {
       const res = await axios.put(

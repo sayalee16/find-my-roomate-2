@@ -4,8 +4,8 @@ import { AuthContext } from "../src/context/authContext";
 
 const Home = () => {
     const {currUser} = useContext(AuthContext);
-    console.log("current user is :");
-    console.log(currUser);
+    // console.log("current user is :");
+    // console.log(currUser);
     return (
         <>
         <Hero/>

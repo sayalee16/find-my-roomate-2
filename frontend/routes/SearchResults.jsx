@@ -52,7 +52,7 @@ const SearchResults = () => {
 
   const handleSearch = () => {
 
-    console.log("oghouses",oghouses);
+    // console.log("oghouses",oghouses);
     // Convert filter values to lowercase for case-insensitive comparison
     const cityFilter = filters.city ? filters.city.toLowerCase().trim() : "";
 
@@ -69,7 +69,7 @@ const SearchResults = () => {
       return isCityMatch && isGenderMatch && isPriceMatch;
     });
 
-    console.log("Filtered houses:", result);
+    // console.log("Filtered houses:", result);
     setFilteredHouses(result);
     setHouses(result);
   };

@@ -33,7 +33,7 @@ const Card = ({house}) => {
     owner_id
   ) => {
     const token = localStorage.getItem("token");
-    console.log("Token from localStorage:", token);
+    // console.log("Token from localStorage:", token);
 
     try {
       const res = await axios.put(
@@ -56,7 +56,7 @@ const Card = ({house}) => {
       localStorage.setItem("user", JSON.stringify(currUser));
       localStorage.setItem("token", JSON.stringify(token));
       updateUser(currUser); // Update user context with the updated user details
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       console.error(
         "Error updating user:",

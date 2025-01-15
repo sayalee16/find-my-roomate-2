@@ -6,7 +6,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [savedPosts, setSavedPosts] = useState([]);
   const { currUser, updateUser } = useContext(AuthContext);
-  console.log("curr user from profile page", currUser._id);
+  // console.log("curr user from profile page", currUser._id);
   if (!currUser) {
     return <Redirect to="/login" />;
   }
@@ -38,7 +38,7 @@ const ProfilePage = () => {
           }
         );
         setSavedPosts(res.data.savedPosts);
-        console.log(res.data.savedPosts);
+        // console.log(res.data.savedPosts);
       } catch (error) {
         console.error("Error fetching saved posts:", error);
       }
@@ -63,7 +63,7 @@ const ProfilePage = () => {
           withCredentials: true,
         }
       );
-      console.log("Post deleted successfully:", res.data);
+      // console.log("Post deleted successfully:", res.data);
       updateUser(currUser);
       localStorage.setItem("user", JSON.stringify(currUser));
       localStorage.setItem("token", token);

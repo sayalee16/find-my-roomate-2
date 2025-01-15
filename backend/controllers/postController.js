@@ -49,8 +49,8 @@ export const deletePost = async (req, res) => {
     
     const _id = req.params.userId; // Get the user ID from the URL parameters
    const {postId} = req.body;
-   console.log("User ID:", _id);
-   console.log("Post ID:", postId);
+  //  console.log("User ID:", _id);
+  //  console.log("Post ID:", postId);
     try {
       // Validate if postId is a valid ObjectId
       if (!mongoose.Types.ObjectId.isValid(postId)) {
@@ -97,7 +97,7 @@ export const getHouse = async(req, res) => {
      if(!house){
       return res.status(404).json({ msg: "House not found" });
      }
-     console.log(house);
+    //  console.log(house);
      res.status(200).json({ msg: "house displayed", house});  
   } catch (error) {
     res.status(500).json({msg:"error displaying house post"});

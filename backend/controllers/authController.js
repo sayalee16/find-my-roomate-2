@@ -45,8 +45,8 @@ export const login = async (req, res) => {
             expires: new Date(Date.now() + 3600000)
         });
 
-        console.log("user is");
-        console.log(user);
+        // console.log("user is");
+        // console.log(user);
         // Send the JSON response
         return res.status(200).json({ msg: "Login successful", token ,user: user});
 

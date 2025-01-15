@@ -27,7 +27,7 @@ const Login = () => {
       const token = res.data.token;
       if (token) {
         localStorage.setItem("token", token); // Save the token to local storage
-        console.log("Token saved:", token);
+        // console.log("Token saved:", token);
       }
       else {
         console.error("No token received");

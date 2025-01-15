@@ -235,7 +235,7 @@ const seedDB = async () => {
         await connectDB(process.env.MONGO_URI);
       await House.deleteMany(); // Clear existing data
       await House.insertMany(houses); // Insert new data
-      console.log('Database seeded!');
+      // console.log('Database seeded!');
       process.exit();
     } catch (err) {
       console.error(err);
