@@ -13,15 +13,7 @@ dotenv.config();
 
 const app = express();
 
-const corsOptions = {
-  origin: ["http://localhost:5173","https://find-my-roomate-frontend.vercel.app","https://find-my-roomate.vercel.app","https://find-my-roomate-backend.vercel.app"],
-  credentials: true,       
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors());
+app.use(cors({ origin: "https://find-my-roomate-frontend.vercel.app", credentials: true }));
 
 // Middlewares
 app.use(express.json());
