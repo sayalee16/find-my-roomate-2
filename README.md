@@ -16,7 +16,7 @@ Find My Roommate is a full-stack web application designed to help users find and
 - Authentication: JWT, bcrypt
 - Deployment: Vercel
 ## Deployed on
-[Find My Roommate Project](https://find-my-roomate.vercel.app)
+[Find My Roommate Project](https://find-my-roomate-frontend.vercel.app)
 ## Installation
 1. Clone repository
   ```bash
