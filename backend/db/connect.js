@@ -2,11 +2,12 @@ import mongoose from "mongoose";
 
 var connectDB = (url) => {
   mongoose
-  .connect(url)
+    .connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    .then(() => console.log('connected'))
+    .catch(err => console.log('Connection failed', err));
 }
-console.log('connected');
+
 export default connectDB;
-
-
-
-
