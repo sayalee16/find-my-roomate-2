@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({ origin: "https://find-my-roomate-frontend.vercel.app", credentials: true }));
-
+app.options("*", cors());
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
