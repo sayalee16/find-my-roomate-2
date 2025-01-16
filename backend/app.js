@@ -12,8 +12,10 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
-
-app.use(cors({ origin: "https://find-my-roomate-frontend.vercel.app", credentials: true }));
+app.use(cors({
+    origin: ['https://find-my-roomate-frontend.vercel.app', 'http://localhost:5173','https://findmy-roomate-frontend.vercel.app/'], // List allowed origins
+    credentials: true, // Allow credentials (cookies, Authorization headers, etc.)
+}));
 app.options("*", cors());
 // Middlewares
 app.use(express.json());
