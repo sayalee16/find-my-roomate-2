@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-const url = process.env.MONGODB_URI;
-
 var connectDB = (url) => {
   mongoose
     .connect(url, {
