@@ -42,6 +42,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     app.listen(port, () => {
+        console.log("db uri :",process.env.MONGO_URI);
       console.log("Server is listening on port 8800...");
     });
   } catch (err) {
