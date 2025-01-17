@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
     const { currUser } = useContext(AuthContext);
-    console.log(currUser);
+    // console.log(currUser);
     return (
         <nav>
             <Link to="/" className="home">
