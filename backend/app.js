@@ -5,6 +5,7 @@ import houseRoute from "./routes/houseRoute.js";
 import testRoute from "./routes/testRoute.js";
 import userRoute from "./routes/userRoute.js";
 import connectDB from "./db/connect.js";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -37,17 +38,31 @@ app.use("/api/houses", houseRoute);
 app.use("/api/test", testRoute);
 app.use("/api/user", userRoute);
 
-const port = 8800;
-const start = async () => {
-  try {
-    await connectDB(process.env.MONGO_URI);
-    app.listen(port, () => {
-        console.log("db uri :",process.env.MONGO_URI);
-      console.log("Server is listening on port 8800...");
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+mongoose.connect(process.env.MONGO_URI);
+const db = mongoose.connection;
 
-start();
+const port = 8800;
+
+db.on("connected", () => {
+  app.listen(port, () => {
+    console.log("Server is listening on port 8800...");
+    console.log("db connected");
+  })
+})
+
+db.on("error", (err) => {
+  console.log("mondo error", err);
+})
+// const start = async () => {
+//   try {
+//     await connectDB(process.env.MONGO_URI);
+//     app.listen(port, () => {
+//         console.log("db uri :",process.env.MONGO_URI);
+//       console.log("Server is listening on port 8800...");
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// start();
