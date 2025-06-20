@@ -5,6 +5,8 @@ export const register = async (req,res) => {
     const {username, email, contactno, password, isAdmin} = req.body;
     // hash password
     const hashPassword = await bcrypt.hash(password, 10);
+    console.log("Raw password:", password);
+console.log("Hashed password:", hashPassword);
     // console.log(hashPassword);
     //create new user n save to db
       try {
@@ -20,6 +22,7 @@ export const register = async (req,res) => {
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
+    console.log("BODY RECEIVED:", req.body); 
 
     try {
         // Check if user exists in the DB
@@ -27,9 +30,12 @@ export const login = async (req, res) => {
         if (!user) {
             return res.status(400).json({ msg: "User not found" });
         }
+        console.log("Entered password:", password);
+        console.log("Stored hash:", user.password);
 
         //Compare passwords
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password.trim(), user.password);
+        console.log("Password match:", isMatch);    
         
         if (!isMatch) {
            return res.status(400).json({ msg: "Invalid credentials" });
@@ -37,7 +43,7 @@ export const login = async (req, res) => {
         
 
         // Generate JWT token
-        const token = jwt.sign({ username: user.name,isAdmin: user.isAdmin , userId: user._id   }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ username: user.username,isAdmin: user.isAdmin , userId: user._id   }, process.env.JWT_SECRET, { expiresIn: "1h" });
         
         // Send token to the client
         res.cookie("token", token, {

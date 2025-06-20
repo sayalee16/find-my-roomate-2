@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.put("/:id",verifyToken, addPost);
 router.get("/:id",verifyToken, getPost);
-router.post("/:userId",verifyToken, deletePost);
+router.delete("/", verifyToken, deletePost);
 router.get("/view-more/:id", getHouse);
 
 export default router;

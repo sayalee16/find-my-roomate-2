@@ -47,8 +47,10 @@ export const getPost = async(req,res) => {
 
 export const deletePost = async (req, res) => {
     
-    const _id = req.params.userId; // Get the user ID from the URL parameters
-   const {postId} = req.body;
+    // const _id = req.params.userId; // Get the user ID from the URL parameters
+    const { postId, userId } = req.body;
+    console.log("Deleting post with ID:", postId);
+    console.log("For user with ID:", userId);
   //  console.log("User ID:", _id);
   //  console.log("Post ID:", postId);
     try {
@@ -58,7 +60,7 @@ export const deletePost = async (req, res) => {
       }
   
       // Find the user by ID
-      const user = await User.findById(_id);
+      const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ msg: "User not found" });
       }
