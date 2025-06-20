@@ -38,7 +38,7 @@ const ProfilePage = () => {
           }
         );
         setSavedPosts(res.data.savedPosts);
-        // console.log(res.data.savedPosts);
+        console.log(res.data.savedPosts);
       } catch (error) {
         console.error("Error fetching saved posts:", error);
       }
@@ -54,14 +54,14 @@ const ProfilePage = () => {
     // all correct above
     
     try {
-      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post/${currUser._id}`,
+      const res = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post`,
         {
-          postId: houseId
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true,
-        }
+    data: { postId: houseId,
+      userId: currUser._id
+     },
+    headers: { Authorization: `Bearer ${token}` },
+    withCredentials: true,
+  }
       );
       // console.log("Post deleted successfully:", res.data);
       updateUser(currUser);
@@ -136,7 +136,7 @@ const ProfilePage = () => {
                       href={`/${house.owner_id}`}
                       onClick={(e) => {
                         e.preventDefault();
-                        handleOnDelete(house._id);
+                        handleOnDelete(house.postId);
                       }}
                       class="btn btn-primary"
                       style={{ marginLeft: "10px" }}

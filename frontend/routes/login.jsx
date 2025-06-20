@@ -11,43 +11,53 @@ const Login = () => {
 
     const {currUser, updateUser} = useContext(AuthContext);
   
-    const handleOnSubmit = async(e) => {
-    e.preventDefault(); 
-    setIsLoading(true);
-    // const formData = new FormData(e.target);
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+const handleOnSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-  
-    try {
-      const res = await axios.post(
-          `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/login`,
-          { email, password },
-          { withCredentials: true }  // Correctly added here in the config object
-      );
-      const token = res.data.token;
-      if (token) {
-        localStorage.setItem("token", token); // Save the token to local storage
-        // console.log("Token saved:", token);
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include", // Same as withCredentials in axios
+        body: JSON.stringify({ email, password })
       }
-      else {
-        console.error("No token received");
-      }
-      const user = {
-        ...res.data.user,  // Spread the user object
-        token: res.data.token,  // Add the token
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.msg || "Login failed");
+    }
+
+    const token = data.token;
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    const user = {
+      ...data.user,
+      token: data.token
     };
-      // console.log("Response data:", res.data);
-      updateUser(user);
-      navigate("/home");
+
+    updateUser(user);
+    navigate("/home");
+
   } catch (error) {
-      console.error("Error during login:", error);
-      setError(error.response ? error.response.data.msg : "Login failed");
+    console.error("Error during login:", error);
+    setError(error.message);
   } finally {
-      setIsLoading(false);
+    setIsLoading(false);
   }
-    
-  };
+};
+
     return (
         <>
         <div className="login">
